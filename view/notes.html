@@ -184,7 +184,7 @@
 
         {loop="$fsc->resultados"}
             <div id="draggable-{$value->id}" class="draggable note-{$value->color}" onchange="javascript:position(this)" style="position:absolute; left: {$value->_left}px; top: {$value->_top}px" onmouseup="actualizaBD(event, {$value->id})">
-                <img class="pin" src="plugins/note/view/pin.png" alt="pin" />
+                <img class="pin" src="plugins/notas/view/pin.png" alt="pin" />
                 <a class="delete"  style="float:right"> <img class="delete" src="plugins/note/view/delete.png" alt="delete" onclick="delete_nota({$value->id})"/> </a>
                 <textarea id="{$value->id}" class="quick" onchange="javascript:getText(this)">{$value->message}</textarea>
             </div>
