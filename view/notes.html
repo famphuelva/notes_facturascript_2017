@@ -179,8 +179,7 @@
     <div class="container">
 
         <div class="text-right" style='margin-top:10px;'> <a href="#addnote" role="button" class="btn btn-success" data-toggle="modal">  <span class="glyphicon glyphicon-plus"></span>
-                <span class="hidden-xs"></span>Nueva Nota</a></div><br/>
-               
+                <span class="hidden-xs"></span>Nueva Nota</a></div><br/>              
 
         {loop="$fsc->resultados"}
             <div id="draggable-{$value->id}" class="draggable note-{$value->color}" onchange="javascript:position(this)" style="position:absolute; left: {$value->_left}px; top: {$value->_top}px" onmouseup="actualizaBD(event, {$value->id})">
