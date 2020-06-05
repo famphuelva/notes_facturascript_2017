@@ -175,7 +175,7 @@
     }
 </script>
 
-<div style="background-image: url('plugins/note/view/board3.jpg'); width: 100%; height: 800px; margin-top: -15px;">
+<div style="background-image: url('plugins/notas/view/board3.jpg'); width: 100%; height: 800px; margin-top: -15px;">
     <div class="container">
 
         <div class="text-right" style='margin-top:10px;'> <a href="#addnote" role="button" class="btn btn-success" data-toggle="modal">  <span class="glyphicon glyphicon-plus"></span>
@@ -185,7 +185,7 @@
         {loop="$fsc->resultados"}
             <div id="draggable-{$value->id}" class="draggable note-{$value->color}" onchange="javascript:position(this)" style="position:absolute; left: {$value->_left}px; top: {$value->_top}px" onmouseup="actualizaBD(event, {$value->id})">
                 <img class="pin" src="plugins/notas/view/pin.png" alt="pin" />
-                <a class="delete"  style="float:right"> <img class="delete" src="plugins/note/view/delete.png" alt="delete" onclick="delete_nota({$value->id})"/> </a>
+                <a class="delete"  style="float:right"> <img class="delete" src="plugins/notas/view/delete.png" alt="delete" onclick="delete_nota({$value->id})"/> </a>
                 <textarea id="{$value->id}" class="quick" onchange="javascript:getText(this)">{$value->message}</textarea>
             </div>
         {/loop}
