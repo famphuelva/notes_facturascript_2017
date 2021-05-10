@@ -24,7 +24,7 @@ and open the template in the editor.
     </columna>
     <columna>
         <nombre>color</nombre>
-        <tipo>integer</tipo>
+        <tipo>character varying(10)</tipo>
         <nulo>NO</nulo>
     </columna>
     <columna>
@@ -34,6 +34,16 @@ and open the template in the editor.
     </columna>
     <columna>
         <nombre>_top</nombre>
+        <tipo>character varying(10)</tipo>
+        <nulo>NO</nulo>
+    </columna>
+     <columna>
+        <nombre>alto</nombre>
+        <tipo>character varying(10)</tipo>
+        <nulo>NO</nulo>
+    </columna>
+    <columna>
+        <nombre>ancho</nombre>
         <tipo>character varying(10)</tipo>
         <nulo>NO</nulo>
     </columna>
