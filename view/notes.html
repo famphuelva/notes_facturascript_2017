@@ -74,12 +74,14 @@
     .draggable { width: 168px; height: 192px; padding: 0.5em; border:0; padding-top:10px; }
     .draggable textarea{ width: 150px; height: 150px; padding: 0.5em; }
     .draggable { text-align:center }
-    .draggable img.pin{ margin-left: 65px;
-                        margin-top: -20px;
+    .draggable img.pin{ margin-left: 10px;
+                        margin-top: -35px;
                         position: absolute;
                         cursor:move;
+                        height: 50px;
+                        width: 50px;
     }
-    .draggable img.delete{margin-left: 0;
+    .draggable img.delete{
                           margin-top: -10px;
                           position: absolute;
                           cursor: pointer;
@@ -102,7 +104,12 @@
 <script>   
     {loop="$fsc->resultados"}
         $(function () {
-            $("#draggable-{$value->id}").draggable();
+            $("#draggable-{$value->id}").draggable();  
+            var b = {$value->alto}-16;
+            var a = {$value->ancho}-2;
+            $("#{$value->id}").innerWidth(a);
+            $("#{$value->id}").height(b);
+           
         });
     {/loop}
 
@@ -135,12 +142,16 @@
             }
         });
     }
-    function actualizaBD(datos, id)
+    function actualizaBD(id)
     {
-        var x = datos.pageX;
-        var y = datos.pageY;
-        
-        var kk = '&left='+x+'&top='+y+'&id='+id+'&coordenadas=1';
+       // var x = datos.pageX;
+      //  var y = datos.pageY;
+        var coordenadas = $("#draggable-"+id).offset();
+        var y = coordenadas.top;
+        var x = coordenadas.left;
+        var ancho = $("#"+id).width(); // ancho de la nota
+        var alto = $("#"+id).height(); // alto de la nota
+        var kk = '&left='+x+'&top='+y+'&id='+id+'&coordenadas=1&ancho='+ancho+'&alto='+alto;
         
         $.ajax({
                 type: 'post',
@@ -179,13 +190,14 @@
     <div class="container">
 
         <div class="text-right" style='margin-top:10px;'> <a href="#addnote" role="button" class="btn btn-success" data-toggle="modal">  <span class="glyphicon glyphicon-plus"></span>
-                <span class="hidden-xs"></span>Nueva Nota</a></div><br/>              
+                <span class="hidden-xs"></span>Nueva Nota</a></div><br/>
+               
 
         {loop="$fsc->resultados"}
-            <div id="draggable-{$value->id}" class="draggable note-{$value->color}" onchange="javascript:position(this)" style="position:absolute; left: {$value->_left}px; top: {$value->_top}px" onmouseup="actualizaBD(event, {$value->id})">
+            <div id="draggable-{$value->id}" class="draggable note-{$value->color}" onchange="javascript:position(this)" style="position:absolute; left: {$value->_left}px; top: {$value->_top}px" onmouseup="actualizaBD({$value->id})">
                 <img class="pin" src="plugins/notas/view/pin.png" alt="pin" />
-                <a class="delete"  style="float:right"> <img class="delete" src="plugins/notas/view/delete.png" alt="delete" onclick="delete_nota({$value->id})"/> </a>
-                <textarea id="{$value->id}" class="quick" onchange="javascript:getText(this)">{$value->message}</textarea>
+                <img class="delete" src="plugins/notas/view/delete.png" alt="delete" onclick="delete_nota({$value->id})"/>
+                <textarea id="{$value->id}" class="quick" style=" width: {$value->alto}; height: {$value->ancho};" onchange="javascript:getText(this)">{$value->message}</textarea>
             </div>
         {/loop}
 
