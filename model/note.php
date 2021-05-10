@@ -29,7 +29,9 @@ class note extends fs_extended_model
     public $color;
     public $_left;
     public $_top;
-
+    public $ancho;
+    public $alto;
+    
     public function __construct($data = FALSE)
     {
         parent::__construct('notes', $data); /// aquí indicamos el NOMBRE DE LA TABLA
