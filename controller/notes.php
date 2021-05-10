@@ -31,7 +31,7 @@ class notes extends fs_list_controller
 
     public function __construct()
     {
-        /// se crea una entrada 'Mi controlador' dentro del menú 'Mio'
+        
         parent::__construct(__CLASS__, 'Notas', 'Notas');
     }
 
@@ -53,6 +53,8 @@ class notes extends fs_list_controller
             $notes->id = $_POST["id"];
             $notes->_left = $_POST["left"];
             $notes->_top = $_POST["top"];
+            $notes->ancho = $_POST["ancho"];
+            $notes->alto = $_POST["alto"];
             $a = $notes->get($notes->id);
             $notes->username = $a->username;
             $notes->message = $a->message;
@@ -73,7 +75,8 @@ class notes extends fs_list_controller
             $notes->color = $a->color;
             $notes->_left = $a->_left;
             $notes->_top = $a->_top;
-
+            $notes->alto = $a->alto;
+            $notes->ancho = $a->ancho;
 
             $notes->save();
         }
@@ -83,12 +86,17 @@ class notes extends fs_list_controller
             if (!$notes->existe_nota($this->user->nick, $_POST["mensaje"])) {
 
                 $notes->message = $_POST["mensaje"];
+                if ($_POST["color"]=='5'){
+                  $notes->color = $_POST["colorv"];
+                }
+                else{
                 $notes->color = $_POST["color"];
+                }                
                 $notes->_left = 165;
                 $notes->_top = 80;
-
+                $notes->alto = 134;
+                $notes->ancho = 134;
                 if (isset($_POST["usuarios"])) {
-
                     if ($_POST["usuarios"] == "todos") {
                         $notes->message = "Nota escrita por: " . $this->user->nick . " en fecha : " . date("d-m-y") . " - " . date("H-i-s") . " " . $_POST["mensaje"];
                         $notes->username = $this->user->nick;
